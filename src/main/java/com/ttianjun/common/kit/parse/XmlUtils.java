@@ -9,7 +9,6 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-import com.ttianjun.common.bean.XJDataNode;
 import com.ttianjun.common.kit.Lists;
 
 public class XmlUtils {
