@@ -1,6 +1,7 @@
 package com.ttianjun.common.kit;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Lists {
@@ -10,6 +11,7 @@ public class Lists {
 	public static <T> ArrayList<T> newArrayList(){
 		return new ArrayList<T>();
 	}
+	
 	/**
 	 * Map<String, List<String>> m = Lists.newHashMap();   
 	 */

@@ -222,7 +222,7 @@ public class ClassSearcher {
     }
 
     public ClassSearcher scanPackages(List<String> scanPaths) {
-        if (scanPaths != null) {
+        if (scanPaths != null && scanPaths.size()>0) {
             scanPackages.addAll(scanPaths);
         }
         return this;

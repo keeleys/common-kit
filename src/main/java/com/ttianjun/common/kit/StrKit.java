@@ -1,5 +1,8 @@
 package com.ttianjun.common.kit;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class StrKit {
 
 	/**
@@ -58,5 +61,14 @@ public class StrKit {
 			if (obj == null)
 				return false;
 		return true;
+	}
+	
+	public static String getDateFormat(String pattern){
+		Date d  = new Date();
+		return new SimpleDateFormat(pattern).format(d);
+	}
+	
+	public static String getDateFormat(){
+		return getDateFormat("yyyyMMddhhmmss");
 	}
 }
