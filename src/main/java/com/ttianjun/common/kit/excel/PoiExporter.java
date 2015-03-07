@@ -1,6 +1,7 @@
 package com.ttianjun.common.kit.excel;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,15 +20,23 @@ public class PoiExporter {
     public static final String VERSION_2003 = "2003";
     private static final int HEADER_ROW = 1;
     private static final int MAX_ROWS = 65535;
+    private String data_format ="yyyy-MM-dd HH:mm:ss";
+    
     private String version;
     private String[] sheetNames = new String[]{"sheet"};
     private int cellWidth = 8000;
     private int headerRow;
     private String[][] headers;
     private String[][] columns;
+    
     private List<?>[] data;
+    
+    public PoiExporter dataFormat(String data_format) {
+    	this.data_format = data_format;
+    	return this;
+	}
 
-    public PoiExporter(List<?>... data) {
+	public PoiExporter(List<?>... data) {
         this.data = data;
         this.column(new String[]{});
     }
@@ -113,8 +122,7 @@ public class PoiExporter {
         return wb;
     }
 
-    @SuppressWarnings("unchecked")
-    private static void processAsMap(String[] columns, Row row, Object obj) {
+    private void processAsMap(String[] columns, Row row, Object obj) {
         Cell cell;
         Map<String, Object> map = (Map<String, Object>) obj;
         if (columns.length == 0) { // show all if column not specified
@@ -133,27 +141,31 @@ public class PoiExporter {
         }
     }
 
-    private static void processAsObject(String[] columns, Row row, Object obj) throws Exception{
+    private void processAsObject(String[] columns, Row row, Object obj) throws Exception{
     	Cell cell;
     	if (columns.length == 0) { // show all if column not specified
             int columnIndex = 0;
             for(Field field :obj.getClass().getDeclaredFields()){
             	cell = row.createCell(columnIndex);
-        		field.setAccessible(true);
-        		cell.setCellValue(field.get(obj)+"");
+        		cell.setCellValue(getFieldValue(field,obj)+"");
         		columnIndex++;
         	}
         } else {
             for (int j = 0, len = columns.length; j < len; j++) {
+            	Field field =obj.getClass().getDeclaredField(columns[j]);
                 cell = row.createCell(j);
-                Field field =obj.getClass().getDeclaredField(columns[j]);
-                field.setAccessible(true);
-                cell.setCellValue(field == null ? "" : field.get(obj) + "");
+                cell.setCellValue(field == null ? "" : getFieldValue(field,obj) + "");
             }
         }
     	
     }
-
+    private String getFieldValue(Field field,Object obj) throws IllegalArgumentException, IllegalAccessException{
+    	field.setAccessible(true);
+    	Object value = field.get(obj);
+    	if(field.getType().getName().equals("java.util.Date"))
+        	value = new SimpleDateFormat(data_format).format((java.util.Date)value);
+		return value+"";
+    }
 
     public PoiExporter version(String version) {
         this.version = version;
