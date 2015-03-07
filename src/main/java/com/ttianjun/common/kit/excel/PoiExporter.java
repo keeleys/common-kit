@@ -29,6 +29,7 @@ public class PoiExporter {
 
     public PoiExporter(List<?>... data) {
         this.data = data;
+        this.column(new String[]{});
     }
 
     public static PoiExporter data(List<?>... data) {
@@ -136,7 +137,7 @@ public class PoiExporter {
     	Cell cell;
     	if (columns.length == 0) { // show all if column not specified
             int columnIndex = 0;
-            for(Field field :obj.getClass().getFields()){
+            for(Field field :obj.getClass().getDeclaredFields()){
             	cell = row.createCell(columnIndex);
         		field.setAccessible(true);
         		cell.setCellValue(field.get(obj)+"");
@@ -145,9 +146,9 @@ public class PoiExporter {
         } else {
             for (int j = 0, len = columns.length; j < len; j++) {
                 cell = row.createCell(j);
-                Field field =obj.getClass().getField(columns[j]);
-                
-                cell.setCellValue(field == null ? "" : field.get(columns[j]) + "");
+                Field field =obj.getClass().getDeclaredField(columns[j]);
+                field.setAccessible(true);
+                cell.setCellValue(field == null ? "" : field.get(obj) + "");
             }
         }
     	
