@@ -42,9 +42,8 @@ public class PropKit {
 		if (result == null) {
 			result = new Prop(fileName, encoding);
 			map.put(fileName, result);
-			if (PropKit.prop == null)
-				PropKit.prop = result;
 		}
+		PropKit.prop = result;
 		return result;
 	}
 	
@@ -71,9 +70,8 @@ public class PropKit {
 		if (result == null) {
 			result = new Prop(file, encoding);
 			map.put(file.getName(), result);
-			if (PropKit.prop == null)
-				PropKit.prop = result;
 		}
+		PropKit.prop = result;
 		return result;
 	}
 	
