@@ -18,11 +18,12 @@ package com.ttianjun.common.kit.weixin;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * CacheKit. Useful tool box for EhCache.
@@ -30,7 +31,7 @@ import net.sf.ehcache.Element;
 public class CacheKit {
 	
 	private static CacheManager cacheManager;
-	private static final Logger log = Logger.getLogger(CacheKit.class);
+	private static final Logger log = LoggerFactory.getLogger(CacheKit.class);
 	
 	static void init(CacheManager cacheManager) {
 		CacheKit.cacheManager = cacheManager;

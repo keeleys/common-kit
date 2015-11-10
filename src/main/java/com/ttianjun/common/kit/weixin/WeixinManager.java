@@ -3,12 +3,13 @@ package com.ttianjun.common.kit.weixin;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ttianjun.common.kit.http.HttpKit;
 import com.ttianjun.common.kit.security.DecriptUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -18,7 +19,7 @@ import com.ttianjun.common.kit.security.DecriptUtil;
  *
  */
 public class WeixinManager {
-	private static Logger log = Logger.getLogger(WeixinManager.class);
+	private static Logger log = LoggerFactory.getLogger(WeixinManager.class);
 	/**
 	 * 基础支持: 获取access_token接口 /token
 	 * 有效期7200秒
