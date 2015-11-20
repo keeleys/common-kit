@@ -10,8 +10,7 @@ import com.ttianjun.common.kit.Lists;
  * json的直接get(key) <br/>
  * xml的所有都是节点 所以需要getNode("key").get("text") 或者 getNode("key").get("attrName");
  * @author TianJun
- * @Date 2015年3月2日
- * @Description:
+ * time 2015年3月2日
  */
 public class XJDataNode {
 	

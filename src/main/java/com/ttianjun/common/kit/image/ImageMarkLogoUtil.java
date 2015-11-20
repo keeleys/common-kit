@@ -17,9 +17,8 @@ import javax.swing.ImageIcon;
  
 /*******************************************************************************
  * Description: 图片水印工具类 
- * @Author TianJun
+ * @author TianJun
  * @version 1.0
- * @See 
  ******************************************************************************/
 public class ImageMarkLogoUtil {
      

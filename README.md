@@ -31,7 +31,7 @@ public static final String SECRET =weixinProp.get("secret");
 
 ## json xml解析
 `JsonUtil`,`XmlUtils`,`XJDataNode` 三个组合 通用解析.
-
+`JaxbKit` jaxb方式的 类和xml转换
 
 
 ## 文件加密
@@ -43,6 +43,6 @@ public static final String SECRET =weixinProp.get("secret");
 ## 微信开发工具类
 `WeixinManager` 获取token jsapi签名等
 `CacheKit` ehcache 工具类
-## 测试工具类
 
+## 测试工具类
 `BaseTest` webapp环境的注解测试父类,依托spring-test
