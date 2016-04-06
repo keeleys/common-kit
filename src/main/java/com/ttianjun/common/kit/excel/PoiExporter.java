@@ -130,7 +130,7 @@ public class PoiExporter {
             int columnIndex = 0;
             for (String key : keys) {
                 cell = row.createCell(columnIndex);
-                cell.setCellValue(map.get(key) + "");
+                cell.setCellValue(map.get(key) == null ? "" : map.get(key) + "");
                 columnIndex++;
             }
         } else {
@@ -147,7 +147,7 @@ public class PoiExporter {
             int columnIndex = 0;
             for(Field field :obj.getClass().getDeclaredFields()){
             	cell = row.createCell(columnIndex);
-        		cell.setCellValue(getFieldValue(field,obj)+"");
+                cell.setCellValue(field == null ? "" : getFieldValue(field,obj) + "");
         		columnIndex++;
         	}
         } else {
